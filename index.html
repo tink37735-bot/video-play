@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Upload & Payment</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        margin:0;
+    }
+
+    .container{
+        background:white;
+        padding:30px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        text-align:center;
+        width:90%;
+        max-width:700px;
+    }
+
+    video{
+        width:100%;
+        border-radius:10px;
+        margin-bottom:20px;
+        background:black;
+    }
+
+    .upload-btn,
+    .pay-btn{
+        display:inline-block;
+        padding:12px 25px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size:16px;
+        margin:10px;
+    }
+
+    .upload-btn{
+        background:#007bff;
+        color:white;
+    }
+
+    .pay-btn{
+        background:#28a745;
+        color:white;
+    }
+
+    .upload-btn:hover{
+        background:#0056b3;
+    }
+
+    .pay-btn:hover{
+        background:#1e7e34;
+    }
+
+    input[type="file"]{
+        display:none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <video id="videoPlayer" controls>
+        <source src="" type="video/mp4">
+        Your browser does not support video playback.
+    </video>
+
+    <br>
+
+    <label for="videoUpload" class="upload-btn">
+        Upload Video
+    </label>
+
+    <input
+        type="file"
+        id="videoUpload"
+        accept="video/*"
+    >
+
+    <br><br>
+
+    <button class="pay-btn" onclick="payNow()">
+        Pay Now
+    </button>
+
+</div>
+
+<script>
+const uploadInput = document.getElementById('videoUpload');
+const videoPlayer = document.getElementById('videoPlayer');
+
+uploadInput.addEventListener('change', function() {
+    const file = this.files[0];
+
+    if(file){
+        const videoURL = URL.createObjectURL(file);
+        videoPlayer.src = videoURL;
+        videoPlayer.load();
+        videoPlayer.play();
+    }
+});
+
+function payNow(){
+    alert("Redirect to payment gateway here.");
+    
+    // Example:
+    // window.location.href = "https://your-payment-link.com";
+}
+</script>
+
+</body>
+</html>
